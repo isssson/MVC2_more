@@ -1,0 +1,25 @@
+package com.more.document.model;
+
+import java.util.List;
+
+public class DocumentServiceImple implements DocumentService {
+
+	DocumentDAO documentDao;
+	
+
+	public DocumentDAO getDocumentDao() {
+		return documentDao;
+	}
+
+
+	public void setDocumentDao(DocumentDAO documentDao) {
+		this.documentDao = documentDao;
+	}
+
+
+	public List<DocumentDTO> m_documentList(String m_id) {
+		List<DocumentDTO> list=documentDao.m_documentList(m_id);
+		return list;
+	}
+
+}

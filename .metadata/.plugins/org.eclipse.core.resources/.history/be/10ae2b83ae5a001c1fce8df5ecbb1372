@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="centerSql">
+   <!-- 공지사항 목록 -->
+   <select id="noticeList" parameterType="Map" resultType="com.more.center.model.CenterDTO">
+      select * from
+      (select rownum as rnum, a. * from
+      (select * from notice)a)b 
+      where rnum <![CDATA[>=]]> #{start} and rnum <![CDATA[<=]]> #{end}
+   </select>
+   <!-- 총 공지사항 수 -->
+   <select id="noticeCount" resultType="Integer">
+      select
+         count(*)
+      from notice
+   </select>
+   <!-- 공지사항 본문보기 -->
+   <select id="noticeContent" parameterType="Integer" resultType="com.more.center.model.CenterDTO">
+      select
+         *
+      from notice
+      where n_idx = #{n_idx}
+   </select>
+   <!-- 공지사항 조회수 -->
+   <update id="noticeReadCnt" parameterType="Integer">
+      update
+         notice
+      set readcnt = readcnt + 1 
+      where n_idx = #{n_idx}
+   </update>
+   <!-- QNA 목록 -->
+   <select id="qnaList" parameterType="Map" resultType="com.more.center.model.CenterDTO">
+      select * from
+      (select rownum as rnum, a. * from
+      (select * from qna where a_no=0)a)b 
+      where rnum <![CDATA[>=]]> #{start} and rnum <![CDATA[<=]]> #{end}
+   </select>
+   <!-- 총 QNA 수 -->
+   <select id="qnaCount" resultType="Integer">
+      select
+         count(*)
+      from qna
+   </select>
+   <!-- QNA 답변 -->
+   <select id="qnaAnswer" parameterType="String" resultType="com.more.center.model.CenterDTO">
+      select
+         *
+      from qna
+      where a_no = #{a_no}
+   </select>
+   <!-- QNA 질문 -->
+   <insert id="qnaWrite" parameterType="Map">
+      insert
+      into qna
+      values(Q_IDX_SEQ.NEXTVAL,
+          DEFAULT,
+          #{cate}, 
+          #{title}, 
+          #{content}, 
+          #{writer}, 
+          DEFAULT
+      )
+   </insert>
+</mapper>

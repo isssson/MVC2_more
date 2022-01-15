@@ -1,0 +1,10 @@
+package com.more.payhistory.model;
+
+public class PayhistoryServiceImple implements PayhistoryService {
+
+	public int statusUpdate(int p_idx) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+}

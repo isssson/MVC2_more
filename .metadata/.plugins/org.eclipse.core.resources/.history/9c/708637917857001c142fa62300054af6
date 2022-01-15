@@ -1,0 +1,16 @@
+package com.more.document.model;
+
+import java.util.List;
+import java.util.Map;
+
+public interface DocumentDAO {
+
+	// 의뢰인의 레슨 목록
+	public List<DocumentDTO> m_documentList(String m_id);
+	
+	// 전문가의 레슨 목록
+	public List<DocumentDTO> e_documentList(Map map);
+	
+	// 전문가 레슨수
+	public int e_documentCnt();
+}

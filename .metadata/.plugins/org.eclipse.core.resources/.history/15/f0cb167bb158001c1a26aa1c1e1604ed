@@ -1,0 +1,147 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="resources/css/expert/expertProfile.css?ver=1">
+<link rel="stylesheet" href="resources/css/bootstrap.min.css">
+<script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<style>
+.who{
+	width: 60px;
+    font-size: 22px;
+    font-weight: bold;
+    color: #ff9797;
+    border: 2px solid #ff9797;
+    border-radius: 5px;
+    text-align: center;
+}
+.name{
+	font-size:18px;	
+	text-align: left;
+}
+.profile{
+	height:400px;
+}
+.leftMenu{
+	height:1000px;
+}
+</style>
+</head>
+<body>
+	<%@ include file="/WEB-INF/views/header.jsp"%>
+	<div id="expertNav">
+		<a href="expertProfile.do?id=${sessionScope.sessionId}"><span style="font-weight: bold;">내 프로필 보기</span></a> 
+		<span>기본 정보</span> 
+		<a href="expertLocation.do?id=${sessionScope.sessionId}"><span>위치 및 이동</span></a> 
+		<a href="expertIntro.do?id=${sessionScope.sessionId}"><span>소개</span></a>
+		<a href="expertSpec.do?id=${sessionScope.sessionId}"><span>학력 및 경력</span></a>
+		<a href="expertCate.do?id=${sessionScope.sessionId}"><span>전문 레슨</span></a> 
+	</div>
+	<div class="expertMain">
+		<div class="leftMain">
+			<div class="leftMenu">
+				<div class="who">학생</div>
+				<div class="profile">
+					<img src="resources/img/jh.png" alt="profile">
+					<h4>${dto.m_name}</h4>
+					<div class="name">
+						<i class="fas fa-phone fa-1x"></i>&nbsp;${dto.m_tel}
+					</div>
+					<div class="name">
+						<i class="far fa-envelope fa-1x"></i>&nbsp;${dto.m_email}
+					</div>
+					<br>
+					<div id="emailBt">프로필 보기</div>
+				</div>
+				<br>
+				<hr>
+				<div class="who">강사</div>
+				<div class="profile">
+					<img src="resources/img/jh.png" alt="profile">
+					<h4>${dto.e_name}</h4>
+					<div class="name">
+						<i class="fas fa-phone fa-1x"></i>&nbsp;${dto.e_tel}
+					</div>
+					<div class="name">
+						<i class="far fa-envelope fa-1x"></i>&nbsp;${dto.e_email}
+					</div>
+					<br>
+					<div id="emailBt">프로필 보기</div>
+				</div>
+			</div>
+
+		</div>
+		<div class="rightMain">
+			<div class="rightMenu">
+				<div class="rightContainer">
+					<div class="rightMenubar">
+						<h3>나의 레슨</h3>
+						<div id="emaillBt">수강 취소하기</div>
+					</div>
+					<hr>
+					<div class="reviewContainer">
+						<div class="reviewItem">
+							<h3 id="see_intro">전문가 소개</h3>
+						</div>
+						<br>
+						<p>ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ</p>
+					</div>
+					<br>
+					<hr>
+					<div class="specContainer">
+						<div class="reviewItem">
+							<h3 id="see_spec">날짜</h3>
+						</div>
+						<br>
+						<div class="careerItems">
+							<div class="careerItem">
+								<h5 style="font-weight: bold;">
+									<i class="fas fa-briefcase"></i>&nbsp;시작날짜
+								</h5>
+								<div class="spec">
+									<div>ㅁㅁㅁㅁㅁㅁ</div>
+								</div>
+							</div>
+							<div class="careerItem">
+								<h5 style="font-weight: bold;">
+									<i class="fas fa-graduation-cap"></i>&nbsp;끝나는날짜
+								</h5>
+								<div class="spec">
+									<div>ㅁㅁㅁㅁㅁ</div>
+								</div>
+							</div>
+						</div>
+						<br>
+						<hr>
+					</div>
+					<div class="specContainer">
+						<div class="reviewItem">
+							<h2 style="line-height: 50px; font-weight:bold;">
+								 강사님<span>은 현재까지</span><br>개의 레슨<span>을 진행했습니다.</span>
+							</h2>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>	
+<%@ include file="/WEB-INF/views/footer.jsp"%>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,27 @@
+package com.more.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.more.document.model.DocumentDTO;
+import com.more.document.model.DocumentService;
+
+@Controller
+public class DocumentController {
+
+	@Autowired
+	private DocumentService documentService;
+	
+	@RequestMapping("/documentContent.do")
+	public ModelAndView documentContent() {
+		int d_idx=7;
+		DocumentDTO dto=documentService.documentContent(d_idx);
+		ModelAndView mav=new ModelAndView();
+		mav.addObject("dto", dto);
+		mav.setViewName("document/documentContent");
+		return mav;
+		
+	}
+}

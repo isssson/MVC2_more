@@ -1,0 +1,5 @@
+package com.more.payhistory.model;
+
+public class PayhistoryDTO {
+
+}

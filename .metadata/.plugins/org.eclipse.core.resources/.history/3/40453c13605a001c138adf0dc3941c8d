@@ -1,0 +1,5 @@
+package com.more.center.model;
+
+public class CenterDTO {
+
+}

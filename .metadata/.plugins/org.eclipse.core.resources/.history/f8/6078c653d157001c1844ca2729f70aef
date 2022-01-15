@@ -1,0 +1,29 @@
+@charset "UTF-8";
+
+h3 {
+    width: 500px;
+    height: 80px;
+    line-height: 80px;
+    font-size: 40px;
+    font-weight: bold;
+    text-align: center;
+    margin: 80px auto;
+    color: #9a5656;
+}
+
+.updateBt{
+   width:450px;
+   height:200px;
+   text-align:center;
+   margin:0 auto;
+   display:flex;
+   flex-direction:column;
+   justify-content: center;
+}
+
+.subject{
+	font-size:25px;
+	color:#ff9797;
+	text-align: center;
+	font-weight: bold;
+}

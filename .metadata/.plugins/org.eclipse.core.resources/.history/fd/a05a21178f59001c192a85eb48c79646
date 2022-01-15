@@ -1,0 +1,59 @@
+package com.more.suggest.model;
+
+import java.util.List;
+import java.util.Map;
+
+import org.mybatis.spring.SqlSessionTemplate;
+
+public class SuggestDAOImple implements SuggestDAO {
+
+	private SqlSessionTemplate sqlmap;
+
+	public SuggestDAOImple(SqlSessionTemplate sqlmap) {
+		super();
+		this.sqlmap = sqlmap;
+	}
+
+	public List<SuggestDTO> suggestList(Map map) {
+		List<SuggestDTO> list = sqlmap.selectList("suggestList", map);
+		return list;
+	}
+
+	public int suggestCount(Map map) {
+		int result = sqlmap.selectOne("suggestCount", map);
+		return result;
+	}
+
+	public int suggestWrite(SuggestDTO dto) {
+		int result = sqlmap.insert("suggestWrite", dto);
+		return result;
+	}
+	
+	public SuggestDTO suggestInfo(int s_idx) {
+		SuggestDTO dto=sqlmap.selectOne("suggestInfo", s_idx);
+		return dto;
+	}
+	public int suggestUpdate(SuggestDTO dto) {
+		int result=sqlmap.update("suggestUpdate", dto);
+		return result;
+	}
+	public int suggestDelete(int s_idx) {
+		int result=sqlmap.delete("suggestDelete", s_idx);
+		return result;
+	}
+
+	public int requestSuggest(SuggestDTO dto) {
+		int result = sqlmap.insert("requestSuggest", dto);
+		return result;
+	}
+
+	public SuggestDTO sugContent() {
+		SuggestDTO dto = sqlmap.selectOne("sugContent");
+		return dto;
+	}
+
+	public SuggestDTO sugContent2(int s_idx) {
+		SuggestDTO dto = sqlmap.selectOne("sugContent2", s_idx);
+		return dto;
+	}
+}

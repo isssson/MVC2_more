@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="documentSql">
+ 	<!-- 의뢰인의 레슨 목록 -->
+ 	<select id="m_documentList" parameterType="String" resultType="com.more.document.model.DocumentDTO">
+ 		select 
+ 			* 
+ 		from
+ 			document
+ 		where
+ 			m_id=#{m_id}
+ 	</select>
+ 	<!-- 전문가의 레슨 목록 -->
+	<select id="e_documentList" parameterType="Map" resultType="com.more.document.model.DocumentDTO">
+		select * from
+      	(select rownum as rnum,a.* from
+      	(select * from document where e_id=#{id} order by d_idx desc)a)b
+     	 where rnum<![CDATA[>=]]>#{start} and rnum<![CDATA[<=]]>#{end}
+ 	</select>
+ 	<!-- 전문가의 레슨 개수  -->
+    <select id="e_documentCnt" parameterType="String" resultType="Integer">
+    	select count(*) from document where e_id=#{e_id}
+    </select>
+     	<!--체결레슨 본문 -->
+ 	<select id="documentContent" parameterType="Integer" resultType="com.more.document.model.DocumentDTO">
+ 		select 
+ 			a.*,
+ 			b.*,
+ 			c.name as m_name, c.email as m_email, c.tel as m_tel,
+ 			d.name as e_name, d.email as e_email, d.tel as e_tel
+ 		from
+ 			document a
+ 		join
+ 			suggest b
+ 		on
+ 			a.s_idx=b.s_idx
+ 		join
+ 			member c
+ 		on
+ 			a.m_id=c.id
+ 		join
+ 			member d
+ 		on
+ 			a.e_id=d.id
+ 		where
+ 			d_idx=#{d_idx}
+ 	</select>
+ </mapper>

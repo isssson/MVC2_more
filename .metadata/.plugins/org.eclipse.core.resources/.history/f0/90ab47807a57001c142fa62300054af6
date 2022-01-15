@@ -1,0 +1,13 @@
+package com.more.document.model;
+
+import java.util.List;
+import java.util.Map;
+
+public interface DocumentService {
+
+	public List<DocumentDTO> m_documentList(String m_id);
+	
+	public List<DocumentDTO> e_documentList(int cp, int ls, String id);
+	
+	public int e_documentCnt(String e_id);
+}

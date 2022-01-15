@@ -1,0 +1,31 @@
+package com.more.center.model;
+
+import java.util.List;
+import java.util.Map;
+
+public interface CenterService {
+
+   public List<CenterDTO> noticeList(int cp, int ls);
+   
+   public int noticeCount();
+   
+   public List<CenterDTO> qnaList(int cp, int ls);
+   
+   public int qnaCount();
+   
+   public CenterDTO qnaAnswer(String a_no);
+   
+   public CenterDTO noticeContent(int n_idx);
+   
+   public void noticeReadCnt(int n_idx);
+   
+   public int qnaWrite(String id, CenterDTO dto);
+   
+   public int noticeSearchCount(Map map);
+
+   public int qnaSearchCount(Map map);
+   
+   public List<CenterDTO> adminNoticeList(Map map);
+   
+   public List<CenterDTO> adminQnaList(Map map);
+}

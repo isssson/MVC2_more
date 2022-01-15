@@ -1,0 +1,38 @@
+package com.more.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.more.document.model.DocumentDTO;
+import com.more.document.model.DocumentService;
+import com.more.payhistory.model.PayhistoryService;
+import com.more.suggest.model.SuggestDTO;
+
+@Controller
+public class DocumentController {
+
+	@Autowired
+	private DocumentService documentService;
+	
+	@Autowired
+	private PayhistoryService payhistoryService;
+	
+	@RequestMapping("/documentContent.do")
+	public ModelAndView documentContent(@RequestParam("p_idx")int p_idx) {
+		int d_idx=21;
+		int result=payhistoryService.statusUpdate(p_idx);
+		String msg=result>0?"수강취소를 신청했습니다.":"수강취소를 실패했습니다.";
+		DocumentDTO dto=documentService.documentContent(d_idx);
+		dto.setStart_date(dto.getStart_date().substring(0, 10));
+		dto.setEnd_date(dto.getEnd_date().substring(0, 10));
+		ModelAndView mav=new ModelAndView();
+		mav.addObject("msg", msg);
+		mav.addObject("dto", dto);
+		mav.setViewName("document/documentContent");
+		return mav;
+		
+	}
+}
